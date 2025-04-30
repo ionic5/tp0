@@ -3,13 +3,13 @@ using System;
 
 namespace Portal301.TP0.Client.Core
 {
-    public class SetJointPanelController
+    public class JointPanelController
     {
         public readonly int jointIndex;
         public readonly IJointPanel jointPanel;
         public readonly IURRobot urRobot;
 
-        public SetJointPanelController(int jointIndex, IJointPanel jointPanel, IURRobot urRobot)
+        public JointPanelController(int jointIndex, IJointPanel jointPanel, IURRobot urRobot)
         {
             this.jointIndex = jointIndex;
             this.jointPanel = jointPanel;
