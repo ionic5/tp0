@@ -5,14 +5,14 @@ namespace Portal301.TP0.Client.Core
 {
     public class MainSceneController
     {
-        public readonly ISpace space;
+        public readonly IFacility facility;
         public readonly IControlPanel controlPanel;
 
         public void OnURRobotDropDownSelectedEvent(object sender, DropDownItemSelectedEventArgs args)
         {
             var index = args.ItemIndex;
             string robotID = "";
-            space.SetRobot(robotID);
+            facility.SetRobot(robotID);
         }
 
         public void OnURRobotRemovedEvent(object sender, EventArgs args)
@@ -26,7 +26,7 @@ namespace Portal301.TP0.Client.Core
             for (var jointIndex = 0; jointIndex < jointCount; jointIndex++)
             {
                 var panel = controlPanel.AddJointPanel();
-                var urRobot = space.GetURRobot();
+                var urRobot = facility.GetURRobot();
 
                 var controller = new JointPanelController(jointIndex, panel, urRobot);
                 panel.MinusButtonClickedEvent += controller.OnMinusButtonClickedEvent;
