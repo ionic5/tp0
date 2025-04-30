@@ -1,5 +1,7 @@
+using Portal301.TP0.Client.Core.Data;
 using Portal301.TP0.Client.Core.View;
 using System;
+using System.Linq;
 
 namespace Portal301.TP0.Client.Core
 {
@@ -7,12 +9,15 @@ namespace Portal301.TP0.Client.Core
     {
         public readonly IFacility facility;
         public readonly IControlPanel controlPanel;
+        public readonly DataStore dataStore;
+        private string urRobotID;
 
         public void OnURRobotDropDownSelectedEvent(object sender, DropDownItemSelectedEventArgs args)
         {
-            var index = args.ItemIndex;
-            string robotID = "";
-            facility.SetRobot(robotID);
+            var urRobotData = dataStore.URRobots.FirstOrDefault(item => item.Index == args.ItemIndex);
+            urRobotID = urRobotData.ID;
+
+            facility.SetRobot(urRobotID);
         }
 
         public void OnURRobotRemovedEvent(object sender, EventArgs args)
@@ -22,8 +27,10 @@ namespace Portal301.TP0.Client.Core
 
         public void OnURRobotSettedEvent(object sender, EventArgs args)
         {
-            var jointCount = 6;
-            for (var jointIndex = 0; jointIndex < jointCount; jointIndex++)
+            var urRobotData = dataStore.URRobots.FirstOrDefault(item => item.ID == urRobotID);
+            var uRRobotJoints = dataStore.uRRobotJoints.Where(item => item.urRobotID == urRobotID).OrderBy(item => item.Index);
+
+            for (var jointIndex = 0; jointIndex < uRRobotJoints.Count(); jointIndex++)
             {
                 var panel = controlPanel.AddJointPanel();
                 var urRobot = facility.GetURRobot();

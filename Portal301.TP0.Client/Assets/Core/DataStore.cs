@@ -1,0 +1,12 @@
+﻿using Portal301.TP0.Client.Core.Data;
+using System.Collections.Generic;
+
+namespace Portal301.TP0.Client.Core
+{
+    public class DataStore
+    {
+        public List<Camera> Cameras;
+        public List<URRobot> URRobots;
+        public List<URRobotJoint> uRRobotJoints;
+    }
+}
