@@ -40,6 +40,7 @@ namespace Portal301.TP0.Client.UnityWorld
             var mainSceneCtrl = new MainSceneController(fac, ctlrPnl, dropDown, dataStore);
             fac.URRobotRemovedEvent += mainSceneCtrl.OnURRobotRemovedEvent;
             fac.URRobotSettedEvent += mainSceneCtrl.OnURRobotSettedEvent;
+            dropDown.ItemSelectedEvent += mainSceneCtrl.OnURRobotDropDownSelectedEvent;
 
             mainSceneCtrl.Setup("UR5e");
 
@@ -48,11 +49,19 @@ namespace Portal301.TP0.Client.UnityWorld
 
         private void Load(ResourceDataStore resourceDataStore)
         {
-            var row = new ResourceData.URRobot();
-            row.URRobotID = "UR5e";
-            row.Path = "URRobots/UR5e/UR5e";
+            {
+                var row = new ResourceData.URRobot();
+                row.URRobotID = "UR5e";
+                row.Path = "URRobots/UR5e/UR5e";
+                resourceDataStore.URRobots.Add(row);
+            }
 
-            resourceDataStore.URRobots.Add(row);
+            {
+                var row = new ResourceData.URRobot();
+                row.URRobotID = "UR3e";
+                row.Path = "URRobots/UR3e/UR3e";
+                resourceDataStore.URRobots.Add(row);
+            }
         }
 
         private void Load(DataStore dataStore)
