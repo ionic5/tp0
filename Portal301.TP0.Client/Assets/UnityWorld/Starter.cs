@@ -33,6 +33,14 @@ namespace Portal301.TP0.Client.UnityWorld
             var fac = mainScene.Facility;
             fac.ResourceDataStore = resourceDataStore;
 
+            var ctlrPnl = mainScene.ControlPanel;
+
+            var mainSceneCtrl = new MainSceneController(fac, ctlrPnl, dataStore);
+            fac.URRobotRemovedEvent += mainSceneCtrl.OnURRobotRemovedEvent;
+            fac.URRobotSettedEvent += mainSceneCtrl.OnURRobotSettedEvent;
+
+            fac.SetRobot("UR5e");
+
             Destroy(gameObject);
         }
 
@@ -46,6 +54,57 @@ namespace Portal301.TP0.Client.UnityWorld
         }
 
         private void Load(DataStore dataStore)
+        {
+            LoadCameras(dataStore);
+            LoadURRobots(dataStore);
+            LoadURRobotJoints(dataStore);
+        }
+
+        private void LoadURRobotJoints(DataStore dataStore)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                var row = new Core.Data.URRobotJoint();
+                row.URRobotID = "UR5e";
+                row.Index = i;
+                row.MaxAngle = 180.0f;
+                row.MinAngle = -180.0f;
+
+                dataStore.URRobotJoints.Add(row);
+            }
+
+            for (int i = 0; i < 6; i++)
+            {
+                var row = new Core.Data.URRobotJoint();
+                row.URRobotID = "UR3e";
+                row.Index = i;
+                row.MaxAngle = 180.0f;
+                row.MinAngle = -180.0f;
+
+                dataStore.URRobotJoints.Add(row);
+            }
+        }
+
+        private void LoadURRobots(DataStore dataStore)
+        {
+            {
+                var row = new Core.Data.URRobot();
+                row.ID = "UR5e";
+                row.Index = 0;
+
+                dataStore.URRobots.Add(row);
+            }
+
+            {
+                var row = new Core.Data.URRobot();
+                row.ID = "UR3e";
+                row.Index = 1;
+
+                dataStore.URRobots.Add(row);
+            }
+        }
+
+        private void LoadCameras(DataStore dataStore)
         {
             var row = new Core.Data.Camera();
             row.RotateSpeed = 0.03f;

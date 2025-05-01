@@ -19,6 +19,8 @@ namespace Portal301.TP0.Client.UnityWorld.View
         public Portal301.TP0.Client.UnityWorld.View.Camera Camera;
         [SerializeField]
         public Facility Facility;
+        [SerializeField]
+        public ControlPanel ControlPanel;
 
         // Update is called once per frame
         void Update()

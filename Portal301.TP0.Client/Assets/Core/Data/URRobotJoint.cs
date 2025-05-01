@@ -2,10 +2,10 @@
 {
     public class URRobotJoint
     {
-        public string urRobotID;
+        public string URRobotID;
         public int Index;
-        public float defaultAngle;
-        public float maxAngle;
-        public float minAngle;
+        public float DefaultAngle;
+        public float MaxAngle;
+        public float MinAngle;
     }
 }

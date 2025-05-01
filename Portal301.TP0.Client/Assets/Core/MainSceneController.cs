@@ -11,6 +11,14 @@ namespace Portal301.TP0.Client.Core
         public readonly DataStore dataStore;
         private string urRobotID;
 
+        public MainSceneController(IFacility facility, IControlPanel controlPanel, DataStore dataStore)
+        {
+            this.facility = facility;
+            this.controlPanel = controlPanel;
+            this.dataStore = dataStore;
+            urRobotID = string.Empty;
+        }
+
         public void OnURRobotDropDownSelectedEvent(object sender, DropDownItemSelectedEventArgs args)
         {
             var urRobotData = dataStore.URRobots.FirstOrDefault(item => item.Index == args.ItemIndex);
@@ -27,7 +35,7 @@ namespace Portal301.TP0.Client.Core
         public void OnURRobotSettedEvent(object sender, EventArgs args)
         {
             var urRobotData = dataStore.URRobots.FirstOrDefault(item => item.ID == urRobotID);
-            var uRRobotJoints = dataStore.URRobotJoints.Where(item => item.urRobotID == urRobotID).OrderBy(item => item.Index);
+            var uRRobotJoints = dataStore.URRobotJoints.Where(item => item.URRobotID == urRobotID).OrderBy(item => item.Index);
 
             for (var jointIndex = 0; jointIndex < uRRobotJoints.Count(); jointIndex++)
             {
