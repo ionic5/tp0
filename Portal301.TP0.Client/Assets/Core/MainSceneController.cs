@@ -27,7 +27,7 @@ namespace Portal301.TP0.Client.Core
         public void OnURRobotSettedEvent(object sender, EventArgs args)
         {
             var urRobotData = dataStore.URRobots.FirstOrDefault(item => item.ID == urRobotID);
-            var uRRobotJoints = dataStore.uRRobotJoints.Where(item => item.urRobotID == urRobotID).OrderBy(item => item.Index);
+            var uRRobotJoints = dataStore.URRobotJoints.Where(item => item.urRobotID == urRobotID).OrderBy(item => item.Index);
 
             for (var jointIndex = 0; jointIndex < uRRobotJoints.Count(); jointIndex++)
             {
