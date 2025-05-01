@@ -5,9 +5,12 @@ namespace Portal301.TP0.Client.UnityWorld.View
 {
     public class Camera : MonoBehaviour, ICamera
     {
-        public System.Numerics.Vector2 GetPosition()
+        [SerializeField]
+        private UnityEngine.Camera targetCamera;
+
+        public System.Numerics.Vector3 GetPosition()
         {
-            return new System.Numerics.Vector2(transform.position.x, transform.position.y);
+            return new System.Numerics.Vector3(transform.position.x, transform.position.y, transform.position.z);
         }
 
         public System.Numerics.Vector2 GetRotation()
@@ -15,9 +18,9 @@ namespace Portal301.TP0.Client.UnityWorld.View
             return new System.Numerics.Vector2(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y);
         }
 
-        public void SetPosition(System.Numerics.Vector2 vector2)
+        public void SetPosition(System.Numerics.Vector3 position)
         {
-            transform.position = new UnityEngine.Vector3(vector2.X, vector2.Y, transform.position.z);
+            transform.position = new UnityEngine.Vector3(position.X, position.Y, position.Z);
         }
 
         public void SetRotation(System.Numerics.Vector2 vector2)
@@ -27,12 +30,14 @@ namespace Portal301.TP0.Client.UnityWorld.View
 
         public void ZoomIn(float zoomSpeed)
         {
-            transform.position += transform.forward * zoomSpeed * Time.deltaTime;
+            targetCamera.fieldOfView -= zoomSpeed * Time.deltaTime;
+            targetCamera.fieldOfView = Mathf.Clamp(targetCamera.fieldOfView, 10f, 100f);
         }
 
         public void ZoomOut(float zoomSpeed)
         {
-            transform.position -= transform.forward * zoomSpeed * Time.deltaTime;
+            targetCamera.fieldOfView += zoomSpeed * Time.deltaTime;
+            targetCamera.fieldOfView = Mathf.Clamp(targetCamera.fieldOfView, 10f, 100f);
         }
     }
 }

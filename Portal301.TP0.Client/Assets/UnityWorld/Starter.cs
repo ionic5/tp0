@@ -32,10 +32,10 @@ namespace Portal301.TP0.Client.UnityWorld
         private static void Load(DataStore dataStore)
         {
             var cam = new Core.Data.Camera();
-            cam.RotateSpeed = 10.0f;
-            cam.MoveSpeed = 10.0f;
-            cam.ZoomSpeed = 10.0f;
-            
+            cam.RotateSpeed = 0.03f;
+            cam.MoveSpeed = 0.03f;
+            cam.ZoomSpeed = 1000.0f;
+
             dataStore.Cameras.Add(cam);
         }
     }
