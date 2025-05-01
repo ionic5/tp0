@@ -33,9 +33,11 @@ namespace Portal301.TP0.Client.UnityWorld
             var fac = mainScene.Facility;
             fac.ResourceDataStore = resourceDataStore;
 
+            var dropDown = mainScene.DropDown;
+
             var ctlrPnl = mainScene.ControlPanel;
 
-            var mainSceneCtrl = new MainSceneController(fac, ctlrPnl, dataStore);
+            var mainSceneCtrl = new MainSceneController(fac, ctlrPnl, dropDown, dataStore);
             fac.URRobotRemovedEvent += mainSceneCtrl.OnURRobotRemovedEvent;
             fac.URRobotSettedEvent += mainSceneCtrl.OnURRobotSettedEvent;
 

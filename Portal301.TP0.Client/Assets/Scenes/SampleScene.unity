@@ -172,6 +172,7 @@ MonoBehaviour:
   Camera: {fileID: 330585548}
   Facility: {fileID: 1863366868}
   ControlPanel: {fileID: 171352591}
+  DropDown: {fileID: 1863548233}
 --- !u!1 &6780594
 GameObject:
   m_ObjectHideFlags: 0
@@ -8953,6 +8954,7 @@ GameObject:
   - component: {fileID: 1863548232}
   - component: {fileID: 1863548231}
   - component: {fileID: 1863548230}
+  - component: {fileID: 1863548233}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -9084,6 +9086,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863548228}
   m_CullTransparentMesh: 1
+--- !u!114 &1863548233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863548228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8f9ed483cff0042b5d37c61abd79ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1909587770
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,8 @@ namespace Portal301.TP0.Client.UnityWorld.View
         public Facility Facility;
         [SerializeField]
         public ControlPanel ControlPanel;
+        [SerializeField]
+        public Assets.UnityWorld.View.DropDown DropDown;
 
         // Update is called once per frame
         void Update()

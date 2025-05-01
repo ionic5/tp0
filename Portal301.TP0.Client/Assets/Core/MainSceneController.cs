@@ -14,10 +14,11 @@ namespace Portal301.TP0.Client.Core
         public readonly DataStore dataStore;
         private string urRobotID;
 
-        public MainSceneController(IFacility facility, IControlPanel controlPanel, DataStore dataStore)
+        public MainSceneController(IFacility facility, IControlPanel controlPanel, IDropDown urRobotDropDown, DataStore dataStore)
         {
             this.facility = facility;
             this.controlPanel = controlPanel;
+            this.urRobotDropDown = urRobotDropDown;
             this.dataStore = dataStore;
             urRobotID = string.Empty;
         }
