@@ -6,32 +6,32 @@ namespace Portal301.TP0.Client.UnityWorld.View
 {
     public class URRobot : MonoBehaviour, IURRobot
     {
-        public void DecreaseJointDegree(int v)
+        public void DecreaseJointAngle(int v)
         {
             throw new System.NotImplementedException();
         }
 
-        public int GetJointDegree(int jointIndex)
+        public int GetJointAngle(int jointIndex)
         {
             throw new System.NotImplementedException();
         }
 
-        public void IncreaseJointDegree(int v)
+        public void IncreaseJointAngle(int v)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool IsJointDegreeReachedMax(int jointIndex)
+        public bool IsJointAngleReachedMax(int jointIndex)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool IsJointDegreeReachedMin(int jointIndex)
+        public bool IsJointAngleReachedMin(int jointIndex)
         {
             throw new System.NotImplementedException();
         }
 
-        public void SetJointDegree(int degree)
+        public void SetJointAngle(int angle)
         {
             throw new System.NotImplementedException();
         }

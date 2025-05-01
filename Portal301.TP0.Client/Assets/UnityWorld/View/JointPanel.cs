@@ -11,7 +11,7 @@ namespace Portal301.TP0.Client.UnityWorld.View
     {
         public event EventHandler MinusButtonClickedEvent;
         public event EventHandler PlusButtonClickedEvent;
-        public event EventHandler<DegreeSettedEventArgs> DegreeSettedEvent;
+        public event EventHandler<AngleSettedEventArgs> AngleSettedEvent;
 
         [SerializeField]
         private Button plusButton;
@@ -22,7 +22,7 @@ namespace Portal301.TP0.Client.UnityWorld.View
 
         public void OnDropDownValueChanged(string value)
         {
-            DegreeSettedEvent?.Invoke(this, new DegreeSettedEventArgs(Convert.ToInt32(value)));
+            AngleSettedEvent?.Invoke(this, new AngleSettedEventArgs(Convert.ToInt32(value)));
         }
 
         public void OnPlusButtonClicked()
@@ -35,9 +35,9 @@ namespace Portal301.TP0.Client.UnityWorld.View
             MinusButtonClickedEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public void SetDegree(int degree)
+        public void SetAngle(int angle)
         {
-            DegreeSettedEvent?.Invoke(this, new DegreeSettedEventArgs(degree));
+            AngleSettedEvent?.Invoke(this, new AngleSettedEventArgs(angle));
         }
 
         public void SetMinusButtonEnabled(bool v)
@@ -54,7 +54,7 @@ namespace Portal301.TP0.Client.UnityWorld.View
         {
             MinusButtonClickedEvent = null;
             PlusButtonClickedEvent = null;
-            DegreeSettedEvent = null;
+            AngleSettedEvent = null;
         }
     }
 }

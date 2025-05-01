@@ -18,28 +18,28 @@ namespace Portal301.TP0.Client.Core
 
         public void OnPlusButtonClickedEvent(object sender, EventArgs args)
         {
-            urRobot.IncreaseJointDegree(1);
+            urRobot.IncreaseJointAngle(1);
             Update();
         }
 
         public void OnMinusButtonClickedEvent(object sender, EventArgs args)
         {
-            urRobot.DecreaseJointDegree(1);
+            urRobot.DecreaseJointAngle(1);
             Update();
         }
 
-        public void OnDegreeSettedEvent(object sender, DegreeSettedEventArgs args)
+        public void OnAngleSettedEvent(object sender, AngleSettedEventArgs args)
         {
-            urRobot.SetJointDegree(args.Degree);
+            urRobot.SetJointAngle(args.Angle);
             Update();
         }
 
         private void Update()
         {
-            var degree = urRobot.GetJointDegree(jointIndex);
-            jointPanel.SetDegree(degree);
-            jointPanel.SetPlusButtonEnabled(urRobot.IsJointDegreeReachedMax(jointIndex));
-            jointPanel.SetMinusButtonEnabled(urRobot.IsJointDegreeReachedMin(jointIndex));
+            var angle = urRobot.GetJointAngle(jointIndex);
+            jointPanel.SetAngle(angle);
+            jointPanel.SetPlusButtonEnabled(urRobot.IsJointAngleReachedMax(jointIndex));
+            jointPanel.SetMinusButtonEnabled(urRobot.IsJointAngleReachedMin(jointIndex));
         }
     }
 }

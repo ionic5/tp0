@@ -45,7 +45,7 @@ namespace Portal301.TP0.Client.Core
                 var controller = new JointPanelController(jointIndex, panel, urRobot);
                 panel.MinusButtonClickedEvent += controller.OnMinusButtonClickedEvent;
                 panel.PlusButtonClickedEvent += controller.OnPlusButtonClickedEvent;
-                panel.DegreeSettedEvent += controller.OnDegreeSettedEvent;
+                panel.AngleSettedEvent += controller.OnAngleSettedEvent;
             }
         }
     }

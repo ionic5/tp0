@@ -6,9 +6,9 @@ namespace Portal301.TP0.Client.Core.View
     {
         event EventHandler MinusButtonClickedEvent;
         event EventHandler PlusButtonClickedEvent;
-        event EventHandler<DegreeSettedEventArgs> DegreeSettedEvent;
+        event EventHandler<AngleSettedEventArgs> AngleSettedEvent;
 
-        void SetDegree(int degree);
+        void SetAngle(int angle);
         void SetMinusButtonEnabled(bool v);
         void SetPlusButtonEnabled(bool v);
     }

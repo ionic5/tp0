@@ -2,13 +2,13 @@ using System;
 
 namespace Portal301.TP0.Client.Core.View
 {
-    public class DegreeSettedEventArgs : EventArgs
+    public class AngleSettedEventArgs : EventArgs
     {
-        public readonly int Degree;
+        public readonly int Angle;
 
-        public DegreeSettedEventArgs(int degree)
+        public AngleSettedEventArgs(int angle)
         {
-            Degree = degree;
+            Angle = angle;
         }
     }
 }
