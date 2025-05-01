@@ -35,8 +35,15 @@ namespace Portal301.TP0.Client.Core
         {
             var delta = lastMousePosition - args.Position;
 
+
             if (isMouseLeftButtonPressed)
-                camera.SetPosition(camera.GetPosition() + camera.GetDirection() * new Vector3(delta.X, 0.0f, delta.Y) * cameraData.MoveSpeed);
+            {
+                var currentPosition = camera.GetPosition();
+                var direction = camera.GetDirection() * delta.Y + Vector3.Cross(Vector3.UnitY, camera.GetDirection()) * delta.X;
+                var nextPosition = currentPosition + direction * cameraData.MoveSpeed;
+
+                camera.SetPosition(new Vector3(nextPosition.X, currentPosition.Y, nextPosition.Z));
+            }
             else if (isMouseRightButtonPressed)
                 camera.SetRotation(camera.GetRotation() + new Vector2(delta.Y, delta.X) * cameraData.RotateSpeed);
 

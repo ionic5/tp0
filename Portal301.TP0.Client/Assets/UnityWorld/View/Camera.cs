@@ -1,5 +1,6 @@
 ﻿using Portal301.TP0.Client.Core.View;
 using UnityEngine;
+using Portal301.TP0.Client.Core;
 
 namespace Portal301.TP0.Client.UnityWorld.View
 {
@@ -11,7 +12,8 @@ namespace Portal301.TP0.Client.UnityWorld.View
         public System.Numerics.Vector3 GetDirection()
         {
             var direction = targetCamera.transform.localRotation * Vector3.forward;
-            return System.Numerics.Vector3.Normalize(new System.Numerics.Vector3(direction.x, direction.y, direction.z));
+            var result = new System.Numerics.Vector3(direction.x, direction.y, direction.z);
+            return System.Numerics.Vector3.Normalize(result);
         }
 
         public System.Numerics.Vector3 GetPosition()
