@@ -1,6 +1,7 @@
 ﻿using Portal301.TP0.Client.Core.View;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Portal301.TP0.Client.UnityWorld.View
@@ -9,18 +10,27 @@ namespace Portal301.TP0.Client.UnityWorld.View
     {
         [SerializeField]
         public List<GameObject> joints;
+        public List<float> angles;
+        public List<Quaternion> initialRotations;
+
+        public void Setup()
+        {
+            angles = Enumerable.Repeat(0.0f, joints.Count).ToList();
+            initialRotations = joints.Select(joint => joint.transform.localRotation).ToList();
+        }
 
         public float GetJointAngle(int jointIndex)
         {
-            var joint = joints[jointIndex];
-            return joint.transform.localEulerAngles.z;
+            return angles[jointIndex];
         }
 
         public void SetJointAngle(int jointIndex, float angle)
         {
+            angles[jointIndex] = angle;
+
             var joint = joints[jointIndex];
-            Vector3 currentRotation = joint.transform.localEulerAngles;
-            joint.transform.localEulerAngles = new Vector3(currentRotation.x, currentRotation.y, angle);
+            var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            joint.transform.localRotation = initialRotations[jointIndex] * rotation;
         }
     }
 }
