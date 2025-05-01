@@ -1,4 +1,3 @@
-using Portal301.TP0.Client.Core.Data;
 using Portal301.TP0.Client.Core.View;
 using System;
 using System.Linq;

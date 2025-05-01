@@ -71,5 +71,4 @@ namespace Portal301.TP0.Client.Core
             isMouseRightButtonPressed = false;
         }
     }
-
 }
