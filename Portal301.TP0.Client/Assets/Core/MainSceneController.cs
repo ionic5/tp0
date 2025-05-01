@@ -1,6 +1,8 @@
 using Portal301.TP0.Client.Core.View;
 using System;
 using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
 namespace Portal301.TP0.Client.Core
 {
@@ -8,6 +10,7 @@ namespace Portal301.TP0.Client.Core
     {
         public readonly IFacility facility;
         public readonly IControlPanel controlPanel;
+        public readonly IDropDown urRobotDropDown;
         public readonly DataStore dataStore;
         private string urRobotID;
 
@@ -23,6 +26,12 @@ namespace Portal301.TP0.Client.Core
         {
             this.urRobotID = urRobotID;
             facility.SetRobot(urRobotID);
+
+            foreach (var item in dataStore.URRobots)
+                urRobotDropDown.AddItem(item.ID);
+
+            var index = dataStore.URRobots.Where(item => item.ID == urRobotID).Select(item => item.Index).First();
+            urRobotDropDown.SelectItem(index);
         }
 
         public void OnURRobotDropDownSelectedEvent(object sender, DropDownItemSelectedEventArgs args)
