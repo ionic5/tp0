@@ -19,6 +19,12 @@ namespace Portal301.TP0.Client.Core
             urRobotID = string.Empty;
         }
 
+        public void Setup(string urRobotID)
+        {
+            this.urRobotID = urRobotID;
+            facility.SetRobot(urRobotID);
+        }
+
         public void OnURRobotDropDownSelectedEvent(object sender, DropDownItemSelectedEventArgs args)
         {
             var urRobotData = dataStore.URRobots.FirstOrDefault(item => item.Index == args.ItemIndex);

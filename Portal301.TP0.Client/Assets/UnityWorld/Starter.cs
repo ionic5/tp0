@@ -39,7 +39,7 @@ namespace Portal301.TP0.Client.UnityWorld
             fac.URRobotRemovedEvent += mainSceneCtrl.OnURRobotRemovedEvent;
             fac.URRobotSettedEvent += mainSceneCtrl.OnURRobotSettedEvent;
 
-            fac.SetRobot("UR5e");
+            mainSceneCtrl.Setup("UR5e");
 
             Destroy(gameObject);
         }
