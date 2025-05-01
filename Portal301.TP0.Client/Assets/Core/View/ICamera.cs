@@ -4,6 +4,7 @@ namespace Portal301.TP0.Client.Core.View
 {
     public interface ICamera
     {
+        Vector3 GetDirection();
         Vector3 GetPosition();
         Vector2 GetRotation();
         void SetPosition(Vector3 vector2);
