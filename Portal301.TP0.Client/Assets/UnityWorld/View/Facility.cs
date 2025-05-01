@@ -22,7 +22,7 @@ namespace Portal301.TP0.Client.UnityWorld.View
         {
             if (urRobot != null)
             {
-                Destroy(urRobot);
+                Destroy(urRobot.gameObject);
                 URRobotRemovedEvent?.Invoke(this, EventArgs.Empty);
             }
 
