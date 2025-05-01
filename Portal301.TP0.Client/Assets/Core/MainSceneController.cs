@@ -42,7 +42,7 @@ namespace Portal301.TP0.Client.Core
                 var panel = controlPanel.AddJointPanel();
                 var urRobot = facility.GetURRobot();
 
-                var controller = new JointPanelController(jointIndex, panel, urRobot);
+                var controller = new JointPanelController(jointIndex, panel, urRobot, uRRobotJoints.ElementAt(jointIndex));
                 panel.MinusButtonClickedEvent += controller.OnMinusButtonClickedEvent;
                 panel.PlusButtonClickedEvent += controller.OnPlusButtonClickedEvent;
                 panel.AngleSettedEvent += controller.OnAngleSettedEvent;

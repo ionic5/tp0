@@ -67,6 +67,7 @@ namespace Portal301.TP0.Client.UnityWorld
                 var row = new Core.Data.URRobotJoint();
                 row.URRobotID = "UR5e";
                 row.Index = i;
+                row.DeltaAngle = 1.0f;
                 row.MaxAngle = 180.0f;
                 row.MinAngle = -180.0f;
 
@@ -78,6 +79,7 @@ namespace Portal301.TP0.Client.UnityWorld
                 var row = new Core.Data.URRobotJoint();
                 row.URRobotID = "UR3e";
                 row.Index = i;
+                row.DeltaAngle = 1.0f;
                 row.MaxAngle = 180.0f;
                 row.MinAngle = -180.0f;
 

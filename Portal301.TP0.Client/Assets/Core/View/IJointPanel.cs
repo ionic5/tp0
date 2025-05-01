@@ -8,7 +8,7 @@ namespace Portal301.TP0.Client.Core.View
         event EventHandler PlusButtonClickedEvent;
         event EventHandler<AngleSettedEventArgs> AngleSettedEvent;
 
-        void SetAngle(int angle);
+        void SetAngle(float angle);
         void SetMinusButtonEnabled(bool v);
         void SetPlusButtonEnabled(bool v);
     }

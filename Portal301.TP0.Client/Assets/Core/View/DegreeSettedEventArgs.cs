@@ -4,9 +4,9 @@ namespace Portal301.TP0.Client.Core.View
 {
     public class AngleSettedEventArgs : EventArgs
     {
-        public readonly int Angle;
+        public readonly float Angle;
 
-        public AngleSettedEventArgs(int angle)
+        public AngleSettedEventArgs(float angle)
         {
             Angle = angle;
         }

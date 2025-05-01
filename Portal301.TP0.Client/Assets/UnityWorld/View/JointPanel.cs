@@ -35,7 +35,7 @@ namespace Portal301.TP0.Client.UnityWorld.View
             MinusButtonClickedEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public void SetAngle(int angle)
+        public void SetAngle(float angle)
         {
             AngleSettedEvent?.Invoke(this, new AngleSettedEventArgs(angle));
         }

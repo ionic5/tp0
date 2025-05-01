@@ -4,7 +4,7 @@
     {
         public string URRobotID;
         public int Index;
-        public float DefaultAngle;
+        public float DeltaAngle;
         public float MaxAngle;
         public float MinAngle;
     }

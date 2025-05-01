@@ -1,39 +1,26 @@
 ﻿using Portal301.TP0.Client.Core.View;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Portal301.TP0.Client.UnityWorld.View
 {
     public class URRobot : MonoBehaviour, IURRobot
     {
-        public void DecreaseJointAngle(int v)
+        [SerializeField]
+        public List<GameObject> joints;
+
+        public float GetJointAngle(int jointIndex)
         {
-            throw new System.NotImplementedException();
+            var joint = joints[jointIndex];
+            return joint.transform.localEulerAngles.z;
         }
 
-        public int GetJointAngle(int jointIndex)
+        public void SetJointAngle(int jointIndex, float angle)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void IncreaseJointAngle(int v)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool IsJointAngleReachedMax(int jointIndex)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool IsJointAngleReachedMin(int jointIndex)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SetJointAngle(int angle)
-        {
-            throw new System.NotImplementedException();
+            var joint = joints[jointIndex];
+            Vector3 currentRotation = joint.transform.localEulerAngles;
+            joint.transform.localEulerAngles = new Vector3(currentRotation.x, currentRotation.y, angle);
         }
     }
 }
