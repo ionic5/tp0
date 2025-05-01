@@ -52,6 +52,8 @@ namespace Portal301.TP0.Client.Core
                 panel.MinusButtonClickedEvent += controller.OnMinusButtonClickedEvent;
                 panel.PlusButtonClickedEvent += controller.OnPlusButtonClickedEvent;
                 panel.AngleSettedEvent += controller.OnAngleSettedEvent;
+
+                controller.Setup();
             }
         }
     }

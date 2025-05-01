@@ -4257,6 +4257,7 @@ MonoBehaviour:
   plusButton: {fileID: 923722562}
   minusButton: {fileID: 493449423}
   angleInputField: {fileID: 1986965388}
+  indexText: {fileID: 446064957}
 --- !u!1 &922763142
 GameObject:
   m_ObjectHideFlags: 0
@@ -5038,6 +5039,7 @@ MonoBehaviour:
   plusButton: {fileID: 1705944222}
   minusButton: {fileID: 440985485}
   angleInputField: {fileID: 1290479154}
+  indexText: {fileID: 1152765640}
 --- !u!1 &1057488123
 GameObject:
   m_ObjectHideFlags: 0
@@ -5905,6 +5907,7 @@ MonoBehaviour:
   plusButton: {fileID: 1698152441}
   minusButton: {fileID: 104952546}
   angleInputField: {fileID: 1604084418}
+  indexText: {fileID: 1635241248}
 --- !u!1 &1208163493
 GameObject:
   m_ObjectHideFlags: 0
@@ -8626,6 +8629,7 @@ MonoBehaviour:
   plusButton: {fileID: 790896998}
   minusButton: {fileID: 345388560}
   angleInputField: {fileID: 2035439534}
+  indexText: {fileID: 1208163495}
 --- !u!1 &1769326601
 GameObject:
   m_ObjectHideFlags: 0
@@ -8661,6 +8665,7 @@ MonoBehaviour:
   plusButton: {fileID: 1364978661}
   minusButton: {fileID: 1115950495}
   angleInputField: {fileID: 396615145}
+  indexText: {fileID: 1634220115}
 --- !u!224 &1769326603
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9943,6 +9948,7 @@ MonoBehaviour:
   plusButton: {fileID: 314900515}
   minusButton: {fileID: 1624975605}
   angleInputField: {fileID: 461771273}
+  indexText: {fileID: 373574779}
 --- !u!1 &2140335111
 GameObject:
   m_ObjectHideFlags: 0

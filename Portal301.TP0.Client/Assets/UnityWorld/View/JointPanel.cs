@@ -1,6 +1,7 @@
 ﻿using Portal301.TP0.Client.Core.View;
 using System;
 using System.Collections;
+using System.Reflection.Emit;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ namespace Portal301.TP0.Client.UnityWorld.View
         private Button minusButton;
         [SerializeField]
         private TMP_InputField angleInputField;
+        [SerializeField]
+        private TMP_Text indexText;
 
         public void OnDropDownValueChanged(string value)
         {
@@ -55,6 +58,11 @@ namespace Portal301.TP0.Client.UnityWorld.View
             MinusButtonClickedEvent = null;
             PlusButtonClickedEvent = null;
             AngleSettedEvent = null;
+        }
+
+        public void SetIndex(int jointIndex)
+        {
+            indexText.text = $"{jointIndex}";
         }
     }
 }

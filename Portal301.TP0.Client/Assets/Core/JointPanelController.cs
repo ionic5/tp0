@@ -19,6 +19,13 @@ namespace Portal301.TP0.Client.Core
             this.uRRobotJoint = uRRobotJoint;
         }
 
+        public void Setup()
+        {
+            jointPanel.SetIndex(jointIndex);
+
+            UpdatePanel();
+        }
+
         public void OnPlusButtonClickedEvent(object sender, EventArgs args)
         {
             SetJointAngle(jointIndex, urRobot.GetJointAngle(jointIndex) + uRRobotJoint.DeltaAngle);
@@ -39,6 +46,13 @@ namespace Portal301.TP0.Client.Core
             angle = Math.Min(uRRobotJoint.MaxAngle, angle);
             angle = Math.Max(uRRobotJoint.MinAngle, angle);
             urRobot.SetJointAngle(jointIndex, angle);
+
+            UpdatePanel();
+        }
+
+        private void UpdatePanel()
+        {
+            var angle = urRobot.GetJointAngle(jointIndex);
 
             jointPanel.SetAngle(angle);
             jointPanel.SetPlusButtonEnabled(angle < uRRobotJoint.MaxAngle);
