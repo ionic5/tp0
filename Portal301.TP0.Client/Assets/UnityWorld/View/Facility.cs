@@ -23,6 +23,7 @@ namespace Portal301.TP0.Client.UnityWorld.View
             var urRobotRD = ResourceDataStore.URRobots.FirstOrDefault(item => item.URRobotID == robotID);
             var original = Resources.Load<URRobot>(urRobotRD.Path);
             urRobot = Instantiate(original);
+            urRobot.transform.position = Vector3.zero;
         }
     }
 }
