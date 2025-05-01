@@ -2,7 +2,10 @@
 using Portal301.TP0.Client.UnityWorld.View;
 using System;
 using System.Collections;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace Portal301.TP0.Client.UnityWorld
@@ -49,19 +52,13 @@ namespace Portal301.TP0.Client.UnityWorld
 
         private void Load(ResourceDataStore resourceDataStore)
         {
+            ReadCsv("ResourceData/URRobot", (reader) =>
             {
                 var row = new ResourceData.URRobot();
-                row.URRobotID = "UR5e";
-                row.Path = "URRobots/UR5e/UR5e";
+                row.URRobotID = reader.GetField("urRobotID");
+                row.Path = reader.GetField("path");
                 resourceDataStore.URRobots.Add(row);
-            }
-
-            {
-                var row = new ResourceData.URRobot();
-                row.URRobotID = "UR3e";
-                row.Path = "URRobots/UR3e/UR3e";
-                resourceDataStore.URRobots.Add(row);
-            }
+            });
         }
 
         private void Load(DataStore dataStore)
@@ -73,58 +70,53 @@ namespace Portal301.TP0.Client.UnityWorld
 
         private void LoadURRobotJoints(DataStore dataStore)
         {
-            for (int i = 0; i < 6; i++)
+            ReadCsv("Data/URRobotJoint", (reader) =>
             {
                 var row = new Core.Data.URRobotJoint();
-                row.URRobotID = "UR5e";
-                row.Index = i;
-                row.DeltaAngle = 1.0f;
-                row.MaxAngle = 180.0f;
-                row.MinAngle = -180.0f;
+                row.URRobotID = reader.GetField("urRobotID");
+                row.Index = Convert.ToInt32(reader.GetField("index"));
+                row.DeltaAngle = Convert.ToSingle(reader.GetField("deltaAngle"));
+                row.MaxAngle = Convert.ToSingle(reader.GetField("maxAngle"));
+                row.MinAngle = Convert.ToSingle(reader.GetField("minAngle"));
 
                 dataStore.URRobotJoints.Add(row);
-            }
-
-            for (int i = 0; i < 6; i++)
-            {
-                var row = new Core.Data.URRobotJoint();
-                row.URRobotID = "UR3e";
-                row.Index = i;
-                row.DeltaAngle = 1.0f;
-                row.MaxAngle = 180.0f;
-                row.MinAngle = -180.0f;
-
-                dataStore.URRobotJoints.Add(row);
-            }
+            });
         }
 
         private void LoadURRobots(DataStore dataStore)
         {
+            ReadCsv("Data/URRobot", (reader) =>
             {
                 var row = new Core.Data.URRobot();
-                row.ID = "UR5e";
-                row.Index = 0;
+                row.ID = reader.GetField("id");
+                row.Index = Convert.ToInt32(reader.GetField("index"));
 
                 dataStore.URRobots.Add(row);
-            }
-
-            {
-                var row = new Core.Data.URRobot();
-                row.ID = "UR3e";
-                row.Index = 1;
-
-                dataStore.URRobots.Add(row);
-            }
+            });
         }
 
         private void LoadCameras(DataStore dataStore)
         {
-            var row = new Core.Data.Camera();
-            row.RotateSpeed = 0.03f;
-            row.MoveSpeed = 0.03f;
-            row.ZoomSpeed = 1000.0f;
+            ReadCsv("Data/Camera", (reader) =>
+            {
+                var row = new Core.Data.Camera();
+                row.RotateSpeed = Convert.ToSingle(reader.GetField("rotateSpeed"));
+                row.MoveSpeed = Convert.ToSingle(reader.GetField("moveSpeed"));
+                row.ZoomSpeed = Convert.ToSingle(reader.GetField("zoomSpeed"));
 
-            dataStore.Cameras.Add(row);
+                dataStore.Cameras.Add(row);
+            });
+        }
+
+        private void ReadCsv(string path, Action<CsvHelper.IReader> callback)
+        {
+            TextAsset csvFile = Resources.Load<TextAsset>(path);
+            using var reader = new StringReader(csvFile.text);
+            using var csvReader = new CsvHelper.CsvReader(reader, CultureInfo.InvariantCulture);
+            csvReader.Read();
+            csvReader.ReadHeader();
+            while (csvReader.Read())
+                callback(csvReader);
         }
     }
 }
