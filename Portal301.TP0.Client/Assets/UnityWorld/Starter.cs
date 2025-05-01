@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.UnityWorld
+namespace Portal301.TP0.Client.UnityWorld
 {
     public class Starter : MonoBehaviour
     {
