@@ -37,17 +37,17 @@ namespace Portal301.TP0.Client.UnityWorld.View
 
         public void SetAngle(float angle)
         {
-            AngleSettedEvent?.Invoke(this, new AngleSettedEventArgs(angle));
+            angleInputField.SetTextWithoutNotify($"{angle}");
         }
 
         public void SetMinusButtonEnabled(bool v)
         {
-            minusButton.enabled = v;
+            minusButton.interactable = v;
         }
 
         public void SetPlusButtonEnabled(bool v)
         {
-            plusButton.enabled = v;
+            plusButton.interactable = v;
         }
 
         public void Clear()
