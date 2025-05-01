@@ -25,7 +25,11 @@ namespace Portal301.TP0.Client.UnityWorld.View
 
         public void OnDropDownValueChanged(string value)
         {
-            AngleSettedEvent?.Invoke(this, new AngleSettedEventArgs(Convert.ToInt32(value)));
+            if (int.TryParse(value, out int number))
+                AngleSettedEvent?.Invoke(this, new AngleSettedEventArgs(number));
+
+            if (string.IsNullOrEmpty(value))
+                SetAngle(0);
         }
 
         public void OnPlusButtonClicked()
