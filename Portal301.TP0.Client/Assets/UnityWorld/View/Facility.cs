@@ -31,6 +31,7 @@ namespace Portal301.TP0.Client.UnityWorld.View
             urRobot = Instantiate(original);
             urRobot.Setup();
             urRobot.transform.position = Vector3.zero;
+            urRobot.transform.parent = transform;
 
             URRobotSettedEvent?.Invoke(this, EventArgs.Empty);
         }
