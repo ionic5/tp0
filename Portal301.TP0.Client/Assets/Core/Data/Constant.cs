@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Portal301.TP0.Client.Core.Data
+﻿namespace Portal301.TP0.Client.Core.Data
 {
     public class Constant
     {

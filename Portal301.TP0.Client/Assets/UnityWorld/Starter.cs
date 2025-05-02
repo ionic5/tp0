@@ -1,12 +1,7 @@
 ﻿using Portal301.TP0.Client.Core;
 using Portal301.TP0.Client.Core.Data;
 using Portal301.TP0.Client.UnityWorld.View;
-using System;
-using System.Collections;
-using System.Globalization;
-using System.IO;
 using System.Linq;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace Portal301.TP0.Client.UnityWorld

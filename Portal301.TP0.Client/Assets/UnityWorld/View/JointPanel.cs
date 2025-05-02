@@ -1,7 +1,5 @@
 ﻿using Portal301.TP0.Client.Core.View;
 using System;
-using System.Collections;
-using System.Reflection.Emit;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

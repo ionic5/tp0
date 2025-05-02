@@ -1,6 +1,5 @@
 ﻿using Portal301.TP0.Client.Core.View;
 using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Portal301.TP0.Client.UnityWorld.View

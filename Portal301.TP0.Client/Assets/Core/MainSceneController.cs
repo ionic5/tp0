@@ -1,8 +1,6 @@
 using Portal301.TP0.Client.Core.View;
 using System;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine.UI;
 
 namespace Portal301.TP0.Client.Core
 {
