@@ -14,15 +14,25 @@ namespace Portal301.TP0.Client.UnityWorld
     {
         [SerializeField]
         private MainScene mainScene;
+        [SerializeField]
+        private DataStoreLoader dataStoreLoader;
+        [SerializeField]
+        private ResourceDataStoreLoader resourceDataStoreLoader;
 
         // Use this for initialization
         void Start()
         {
+            var readCsvActn = new ReadCsvAction();
+            
+            dataStoreLoader.ReadCsvAction = readCsvActn;
+
+            resourceDataStoreLoader.ReadCsvAction = readCsvActn;
+
             var dataStore = new DataStore();
-            Load(dataStore);
+            dataStoreLoader.Load(dataStore);
 
             var resourceDataStore = new ResourceDataStore();
-            Load(resourceDataStore);
+            resourceDataStoreLoader.Load(resourceDataStore);
 
             var camCtrl = new CameraController(mainScene.Camera, dataStore.Cameras.FirstOrDefault());
             mainScene.MouseScrollDownEvent += camCtrl.OnMouseScrollDownEvent;
@@ -48,75 +58,6 @@ namespace Portal301.TP0.Client.UnityWorld
             mainSceneCtrl.Setup("UR5e");
 
             Destroy(gameObject);
-        }
-
-        private void Load(ResourceDataStore resourceDataStore)
-        {
-            ReadCsv("ResourceData/URRobot", (reader) =>
-            {
-                var row = new ResourceData.URRobot();
-                row.URRobotID = reader.GetField("urRobotID");
-                row.Path = reader.GetField("path");
-                resourceDataStore.URRobots.Add(row);
-            });
-        }
-
-        private void Load(DataStore dataStore)
-        {
-            LoadCameras(dataStore);
-            LoadURRobots(dataStore);
-            LoadURRobotJoints(dataStore);
-        }
-
-        private void LoadURRobotJoints(DataStore dataStore)
-        {
-            ReadCsv("Data/URRobotJoint", (reader) =>
-            {
-                var row = new Core.Data.URRobotJoint();
-                row.URRobotID = reader.GetField("urRobotID");
-                row.Index = Convert.ToInt32(reader.GetField("index"));
-                row.DeltaAngle = Convert.ToSingle(reader.GetField("deltaAngle"));
-                row.MaxAngle = Convert.ToSingle(reader.GetField("maxAngle"));
-                row.MinAngle = Convert.ToSingle(reader.GetField("minAngle"));
-
-                dataStore.URRobotJoints.Add(row);
-            });
-        }
-
-        private void LoadURRobots(DataStore dataStore)
-        {
-            ReadCsv("Data/URRobot", (reader) =>
-            {
-                var row = new Core.Data.URRobot();
-                row.ID = reader.GetField("id");
-                row.Index = Convert.ToInt32(reader.GetField("index"));
-
-                dataStore.URRobots.Add(row);
-            });
-        }
-
-        private void LoadCameras(DataStore dataStore)
-        {
-            ReadCsv("Data/Camera", (reader) =>
-            {
-                var row = new Core.Data.Camera();
-                row.RotateSpeed = Convert.ToSingle(reader.GetField("rotateSpeed"));
-                row.MoveSpeed = Convert.ToSingle(reader.GetField("moveSpeed"));
-                row.ZoomSpeed = Convert.ToSingle(reader.GetField("zoomSpeed"));
-
-                dataStore.Cameras.Add(row);
-            });
-        }
-
-        private void ReadCsv(string path, Action<CsvHelper.IReader> callback)
-        {
-            TextAsset csvFile = Resources.Load<TextAsset>(path);
-            using var reader = new StringReader(csvFile.text);
-            using var csvReader = new CsvHelper.CsvReader(reader, CultureInfo.InvariantCulture);
-            csvReader.Read();
-            csvReader.ReadHeader();
-            while (csvReader.Read())
-                callback(csvReader);
         }
     }
 }

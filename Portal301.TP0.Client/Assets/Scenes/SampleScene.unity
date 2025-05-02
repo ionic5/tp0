@@ -3363,6 +3363,8 @@ GameObject:
   m_Component:
   - component: {fileID: 601417405}
   - component: {fileID: 601417404}
+  - component: {fileID: 601417407}
+  - component: {fileID: 601417406}
   m_Layer: 0
   m_Name: Starter
   m_TagString: Untagged
@@ -3383,6 +3385,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScene: {fileID: 6563980}
+  dataStoreLoader: {fileID: 601417407}
+  resourceDataStoreLoader: {fileID: 601417406}
 --- !u!4 &601417405
 Transform:
   m_ObjectHideFlags: 0
@@ -3398,6 +3402,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &601417406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601417403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8484384e5c64e74e8a18026e9206970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rootPath: ResourceData
+--- !u!114 &601417407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601417403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6b599264eb49c4a84d618d39a0e3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rootPath: Data
 --- !u!1 &613742470
 GameObject:
   m_ObjectHideFlags: 0
