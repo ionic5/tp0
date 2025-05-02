@@ -30,7 +30,14 @@ namespace Portal301.TP0.Client.UnityWorld
             var resourceDataStore = new ResourceDataStore();
             resourceDataStoreLoader.Load(resourceDataStore);
 
-            var camCtrl = new CameraController(mainScene.Camera, dataStore.Cameras.FirstOrDefault());
+            var cam = mainScene.Camera;
+
+            var camSetting = new CameraSetting();
+            camSetting.ZoomSpeed = cam.ZoomSpeed;
+            camSetting.MoveSpeed = cam.MoveSpeed;
+            camSetting.RotateSpeed = cam.RotateSpeed;
+
+            var camCtrl = new CameraController(cam, camSetting);
             mainScene.MouseScrollDownEvent += camCtrl.OnMouseScrollDownEvent;
             mainScene.MouseScrollUpEvent += camCtrl.OnMouseScrollUpEvent;
             mainScene.MouseMoveEvent += camCtrl.OnMouseMoveEvent;

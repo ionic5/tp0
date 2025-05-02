@@ -7355,6 +7355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 1454179829}
+  ZoomSpeed: 1000
+  MoveSpeed: 0.001
+  RotateSpeed: 0.1
 --- !u!1 &1473361444
 GameObject:
   m_ObjectHideFlags: 0

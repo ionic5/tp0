@@ -7,6 +7,12 @@ namespace Portal301.TP0.Client.UnityWorld.View
     {
         [SerializeField]
         private UnityEngine.Camera targetCamera;
+        [SerializeField]
+        public float ZoomSpeed;
+        [SerializeField]
+        public float MoveSpeed;
+        [SerializeField]
+        public float RotateSpeed;
 
         public System.Numerics.Vector3 GetDirection()
         {

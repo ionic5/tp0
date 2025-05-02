@@ -7,15 +7,15 @@ namespace Portal301.TP0.Client.Core
     public class CameraController
     {
         public readonly ICamera camera;
-        public readonly Data.Camera cameraData;
+        public readonly CameraSetting cameraSetting;
         public bool isMouseLeftButtonPressed;
         public bool isMouseRightButtonPressed;
         public System.Numerics.Vector2 lastMousePosition;
 
-        public CameraController(ICamera camera, Data.Camera cameraData)
+        public CameraController(ICamera camera, CameraSetting cameraSetting)
         {
             this.camera = camera;
-            this.cameraData = cameraData;
+            this.cameraSetting = cameraSetting;
             isMouseLeftButtonPressed = false;
             isMouseRightButtonPressed = false;
             lastMousePosition = Vector2.Zero;
@@ -23,12 +23,12 @@ namespace Portal301.TP0.Client.Core
 
         public void OnMouseScrollUpEvent(object sender, EventArgs args)
         {
-            camera.ZoomIn(cameraData.ZoomSpeed);
+            camera.ZoomIn(cameraSetting.ZoomSpeed);
         }
 
         public void OnMouseScrollDownEvent(object sender, EventArgs args)
         {
-            camera.ZoomOut(cameraData.ZoomSpeed);
+            camera.ZoomOut(cameraSetting.ZoomSpeed);
         }
 
         public void OnMouseMoveEvent(object sender, MouseMoveEventArgs args)
@@ -40,12 +40,12 @@ namespace Portal301.TP0.Client.Core
             {
                 var currentPosition = camera.GetPosition();
                 var direction = camera.GetDirection() * delta.Y + Vector3.Cross(Vector3.UnitY, camera.GetDirection()) * delta.X;
-                var nextPosition = currentPosition + direction * cameraData.MoveSpeed;
+                var nextPosition = currentPosition + direction * cameraSetting.MoveSpeed;
 
                 camera.SetPosition(new Vector3(nextPosition.X, currentPosition.Y, nextPosition.Z));
             }
             else if (isMouseRightButtonPressed)
-                camera.SetRotation(camera.GetRotation() + new Vector2(delta.Y, delta.X) * cameraData.RotateSpeed);
+                camera.SetRotation(camera.GetRotation() + new Vector2(delta.Y, delta.X) * cameraSetting.RotateSpeed);
 
             lastMousePosition = args.Position;
         }
