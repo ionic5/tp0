@@ -1,8 +1,10 @@
 ﻿using Portal301.TP0.Client.Core;
 using Portal301.TP0.Client.Core.Data;
 using Portal301.TP0.Client.UnityWorld.View;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Portal301.TP0.Client.UnityWorld
 {
@@ -49,11 +51,17 @@ namespace Portal301.TP0.Client.UnityWorld
             var fac = mainScene.Facility;
             fac.ResourceDataStore = resourceDataStore;
 
-            var dropDown = mainScene.DropDown;
+            var doc = mainScene.UIDocument;
+            var ctrlPanelElem = doc.rootVisualElement.Q("ControlPanel");
 
-            var ctlrPnl = mainScene.ControlPanel;
+            var dropDown = new DropDown(ctrlPanelElem.Q("Row0").Q("URRobotDropDown"));
 
-            var mainSceneCtrl = new MainSceneController(fac, ctlrPnl, dropDown, dataStore);
+            var jointPanels = new List<JointPanel>();
+            foreach (var item in ctrlPanelElem.Q("Row1").Query("JointPanel").ToList())
+                jointPanels.Add(new JointPanel(item));
+            var ctrlPanel = new ControlPanel(jointPanels);
+
+            var mainSceneCtrl = new MainSceneController(fac, ctrlPanel, dropDown, dataStore);
             fac.URRobotRemovedEvent += mainSceneCtrl.OnURRobotRemovedEvent;
             fac.URRobotSettedEvent += mainSceneCtrl.OnURRobotSettedEvent;
             dropDown.ItemSelectedEvent += mainSceneCtrl.OnURRobotDropDownSelectedEvent;

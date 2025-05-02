@@ -1,58 +1,68 @@
-﻿using Portal301.TP0.Client.Core.View;
+﻿using GLTFast.Schema;
+using Portal301.TP0.Client.Core.View;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace Portal301.TP0.Client.UnityWorld.View
 {
-    public class JointPanel : MonoBehaviour, IJointPanel
+    public class JointPanel : IJointPanel
     {
         public event EventHandler MinusButtonClickedEvent;
         public event EventHandler PlusButtonClickedEvent;
         public event EventHandler<AngleSettedEventArgs> AngleSettedEvent;
 
-        [SerializeField]
-        private Button plusButton;
-        [SerializeField]
-        private Button minusButton;
-        [SerializeField]
-        private TMP_InputField angleInputField;
-        [SerializeField]
-        private TMP_Text indexText;
+        private readonly VisualElement root;
+        private readonly IntegerField angleInputField;
+        private readonly Label indexLabel;
+        private readonly UnityEngine.UIElements.Button plusButton;
+        private readonly UnityEngine.UIElements.Button minusButton;
 
-        public void OnDropDownValueChanged(string value)
+        public bool IsActive => root.style.display == DisplayStyle.Flex;
+
+        public JointPanel(VisualElement root)
         {
-            if (int.TryParse(value, out int number))
-                AngleSettedEvent?.Invoke(this, new AngleSettedEventArgs(number));
+            this.root = root;
+            plusButton = root.Q("PlusButton") as UnityEngine.UIElements.Button;
+            minusButton = root.Q("MinusButton") as UnityEngine.UIElements.Button;
+            angleInputField = root.Q("AngleInputField") as IntegerField;
+            indexLabel = root.Q("IndexLabel") as Label;
 
-            if (string.IsNullOrEmpty(value))
-                SetAngle(0);
+            plusButton.RegisterCallback<ClickEvent>(OnPlusButtonClicked);
+            minusButton.RegisterCallback<ClickEvent>(OnMinusButtonClicked);
+            angleInputField.RegisterValueChangedCallback(OnAngleChanged);
         }
 
-        public void OnPlusButtonClicked()
+        public void OnAngleChanged(ChangeEvent<int> evt)
+        {
+            AngleSettedEvent?.Invoke(this, new AngleSettedEventArgs(evt.newValue));
+        }
+
+        public void OnPlusButtonClicked(ClickEvent clickEvent)
         {
             PlusButtonClickedEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public void OnMinusButtonClicked()
+        public void OnMinusButtonClicked(ClickEvent clickEvent)
         {
             MinusButtonClickedEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public void SetAngle(float angle)
         {
-            angleInputField.SetTextWithoutNotify($"{angle}");
+            angleInputField.SetValueWithoutNotify(Convert.ToInt32(angle));
         }
 
         public void SetMinusButtonEnabled(bool v)
         {
-            minusButton.interactable = v;
+            minusButton.SetEnabled(v);
         }
 
         public void SetPlusButtonEnabled(bool v)
         {
-            plusButton.interactable = v;
+            plusButton.SetEnabled(v);
         }
 
         public void Clear()
@@ -64,7 +74,12 @@ namespace Portal301.TP0.Client.UnityWorld.View
 
         public void SetIndex(int jointIndex)
         {
-            indexText.text = $"{jointIndex}";
+            indexLabel.text = $"{jointIndex}";
+        }
+
+        public void SetActive(bool value)
+        {
+            root.style.display = value ? DisplayStyle.Flex : DisplayStyle.None;
         }
     }
 }

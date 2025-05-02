@@ -1,6 +1,7 @@
 ﻿using Portal301.TP0.Client.Core.View;
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Portal301.TP0.Client.UnityWorld.View
 {
@@ -19,9 +20,7 @@ namespace Portal301.TP0.Client.UnityWorld.View
         [SerializeField]
         public Facility Facility;
         [SerializeField]
-        public ControlPanel ControlPanel;
-        [SerializeField]
-        public Assets.UnityWorld.View.DropDown DropDown;
+        public UIDocument UIDocument;
 
         // Update is called once per frame
         void Update()

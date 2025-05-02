@@ -1,21 +1,24 @@
 ﻿using Portal301.TP0.Client.Core.View;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Portal301.TP0.Client.UnityWorld.View
 {
-    public class ControlPanel : MonoBehaviour, IControlPanel
+    public class ControlPanel : IControlPanel
     {
-        [SerializeField]
-        public List<JointPanel> JointPanels;
+        public readonly List<JointPanel> JointPanels;
+
+        public ControlPanel(List<JointPanel> jointPanels)
+        {
+            JointPanels = jointPanels;
+        }
 
         public IJointPanel AddJointPanel()
         {
             foreach (var panel in JointPanels)
             {
-                if (panel.gameObject.activeSelf)
+                if (panel.IsActive)
                     continue;
-                panel.gameObject.SetActive(true);
+                panel.SetActive(true);
                 return panel;
             }
 
@@ -27,7 +30,7 @@ namespace Portal301.TP0.Client.UnityWorld.View
             foreach (var panel in JointPanels)
             {
                 panel.Clear();
-                panel.gameObject.SetActive(false);
+                panel.SetActive(false);
             }
         }
     }
