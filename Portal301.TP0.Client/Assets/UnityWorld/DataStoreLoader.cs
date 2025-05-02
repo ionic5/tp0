@@ -19,6 +19,19 @@ namespace Portal301.TP0.Client.UnityWorld
             LoadCameras(dataStore);
             LoadURRobots(dataStore);
             LoadURRobotJoints(dataStore);
+            LoadConstant(dataStore);
+        }
+
+        private void LoadConstant(DataStore dataStore)
+        {
+            ReadCsvAction.Invoke($"{rootPath}/Constant", (reader) =>
+            {
+                var row = new Core.Data.Constant();
+                row.ID = reader.GetField("id");
+                row.Value = reader.GetField("value");
+
+                dataStore.Constants.Add(row);
+            });
         }
 
         private void LoadURRobotJoints(DataStore dataStore)

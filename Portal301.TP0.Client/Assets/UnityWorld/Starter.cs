@@ -1,4 +1,5 @@
 ﻿using Portal301.TP0.Client.Core;
+using Portal301.TP0.Client.Core.Data;
 using Portal301.TP0.Client.UnityWorld.View;
 using System;
 using System.Collections;
@@ -23,7 +24,7 @@ namespace Portal301.TP0.Client.UnityWorld
         void Start()
         {
             var readCsvActn = new ReadCsvAction();
-            
+
             dataStoreLoader.ReadCsvAction = readCsvActn;
 
             resourceDataStoreLoader.ReadCsvAction = readCsvActn;
@@ -55,7 +56,9 @@ namespace Portal301.TP0.Client.UnityWorld
             fac.URRobotSettedEvent += mainSceneCtrl.OnURRobotSettedEvent;
             dropDown.ItemSelectedEvent += mainSceneCtrl.OnURRobotDropDownSelectedEvent;
 
-            mainSceneCtrl.Setup("UR5e");
+            var defaultURRobotID = dataStore.Constants.Where(item => item.ID == ConstantID.DefaultURRobotID).Select(item => item.Value).First();
+
+            mainSceneCtrl.Setup(defaultURRobotID);
 
             Destroy(gameObject);
         }
