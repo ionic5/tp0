@@ -13,7 +13,6 @@ namespace Portal301.TP0.Client.UnityWorld
 
         public void Load(DataStore dataStore)
         {
-            LoadCameras(dataStore);
             LoadURRobots(dataStore);
             LoadURRobotJoints(dataStore);
             LoadConstant(dataStore);
@@ -55,19 +54,6 @@ namespace Portal301.TP0.Client.UnityWorld
                 row.Index = Convert.ToInt32(reader.GetField("index"));
 
                 dataStore.URRobots.Add(row);
-            });
-        }
-
-        private void LoadCameras(DataStore dataStore)
-        {
-            ReadCsvAction.Invoke($"{rootPath}/Camera", (reader) =>
-            {
-                var row = new Core.Data.Camera();
-                row.RotateSpeed = Convert.ToSingle(reader.GetField("rotateSpeed"));
-                row.MoveSpeed = Convert.ToSingle(reader.GetField("moveSpeed"));
-                row.ZoomSpeed = Convert.ToSingle(reader.GetField("zoomSpeed"));
-
-                dataStore.Cameras.Add(row);
             });
         }
     }
